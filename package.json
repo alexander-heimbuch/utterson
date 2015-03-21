@@ -1,0 +1,37 @@
+{
+  "name": "utterson",
+  "version": "0.0.1",
+  "description": "A node flexible static blog generator based on markdown",
+  "main": "index.js",
+  "scripts": {
+    "build": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://zusatzstoff@github.com/zusatzstoff/utterson.git"
+  },
+  "keywords": [
+    "static",
+    "page",
+    "generator",
+    "modular",
+    "markdown"
+  ],
+  "author": "Alexander Heimbuch (alex@zusatzstoff.org)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zusatzstoff/utterson/issues"
+  },
+  "homepage": "https://github.com/zusatzstoff/utterson",
+  "dependencies": {
+    "bluebird": "^2.9.12",
+    "file": "^0.2.2",
+    "fs-extra": "^0.14.0",
+    "lodash": "^2.4.1",
+    "markdown-extra": "^0.1.0",
+    "marked": "^0.3.2",
+    "mime": "^1.2.11",
+    "rimraf": "^2.2.8",
+    "striptags": "^1.0.0"
+  }
+}
