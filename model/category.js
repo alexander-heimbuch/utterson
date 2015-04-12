@@ -5,50 +5,67 @@ var _ = require('lodash'),
     Bluebird = require('bluebird'),
     validFile = require('../lib/file-validator'),
 
-    config = require('../config'),
     path = require('path'),
     fs = require('fs'),
-
-    postModel = require('./post'),
     category = {};
 
 module.exports = (function () {
     'use strict';
-    /**
-     * Retrieve posts from a category
-     * @param  {String} categoryPath Path to the category
-     * @return {Array}               Filename and Filepath
-     */
-    var getCategoryFiles = function (categoryPath) {
-            var files = [];
 
-            fs.readdirSync(categoryPath).map(function (file) {
-                var filePath = categoryPath + path.sep + file;
-                if (validFile(filePath)) {
-                    files.push(filePath);
-                }
-            });
+    return function (src) {
+        var postModel = require('./post')(src),
 
-            return files;
-        },
+            /**
+             * Retrieve posts from a category
+             * @param  {String} categoryPath Path to the category
+             * @return {Array}               Filename and Filepath
+             */
+            getCategoryFiles = function (categoryPath) {
+                var files = [];
 
-        collectPosts = function (name, post) {
-            category[name].posts.push(post);
-        };
+                fs.readdirSync(categoryPath).map(function (file) {
+                    var filePath = categoryPath + path.sep + file;
+                    if (validFile(filePath)) {
+                        files.push(filePath);
+                    }
+                });
 
-    return function (name, categoryPath) {
-        if (category[name] === undefined) {
-            category[name] = {
-                'base': '../',
-                'name': name,
-                'posts': []
+                return files;
+            },
+
+            collectPosts = function (name, post) {
+                category[name].posts.push(post);
             };
 
-            _.forEach(getCategoryFiles(categoryPath), function (file) {
-                collectPosts(name, postModel.getPost(name, file));
-            });
-        }
+        return function (name, categoryPath) {
+            if (category[name] === undefined) {
+                category[name] = {
+                    'base': '../',
+                    'name': name,
+                    'posts': []
+                };
 
-        return category[name];
+                _.forEach(getCategoryFiles(categoryPath), function (file) {
+                    collectPosts(name, postModel.getPost(name, file));
+                });
+
+                category[name].posts.sort(function (a, b) {
+                    var dateA = Date.parse(a.publish),
+                        dateB = Date.parse(b.publish);
+
+                    if (dateA > dateB) {
+                        return -1;
+                    }
+
+                    if (dateA < dateB) {
+                        return 1;
+                    }
+
+                    return 0;
+                });
+            }
+
+            return category[name];
+        };
     };
 })();

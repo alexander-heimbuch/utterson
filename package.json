@@ -31,7 +31,10 @@
     "markdown-extra": "^0.1.0",
     "marked": "^0.3.2",
     "mime": "^1.2.11",
+    "moment": "^2.10.2",
+    "node-uuid": "^1.4.3",
     "rimraf": "^2.2.8",
-    "striptags": "^1.0.0"
+    "striptags": "^1.0.0",
+    "winston": "^1.0.0"
   }
 }
