@@ -13,6 +13,7 @@ var _ = require('lodash'),
     fileCopy = require('./lib/file-copy'),
     dirParser = require('./lib/directory-parser'),
     contentMerger = require('./lib/dir-merger'),
+    logger = new Function,
 
     categoryModel,
     startpageModel,
@@ -32,6 +33,10 @@ module.exports = (function () {
     contentMerger.dest(src);
 
     return {
+        'logger': function (remoteLogger) {
+            logger = remoteLogger;
+        },
+
         'use': function (uttersonTemplate) {
             template = uttersonTemplate;
         },
@@ -82,14 +87,14 @@ module.exports = (function () {
             files = _.flatten(files, true);
 
             // Write the files
-            fileWriter(dest, files);
+            fileWriter(dest, files, logger);
 
             // Copy all images
-            fileCopy(src, path.resolve(dest), ['.jpg', '.JPG', '.png', '.PNG', '.pdf', '.PDF']);
+            fileCopy(src, path.resolve(dest), ['.jpg', '.JPG', '.png', '.PNG', '.pdf', '.PDF'], logger);
 
             // Copy all assets
             template.assets().forEach(function (asset) {
-                fileCopy(asset.src, dest + path.sep + asset.dest);
+                fileCopy(asset.src, dest + path.sep + asset.dest, undefined, logger);
             });
         },
 

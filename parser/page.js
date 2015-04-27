@@ -4,7 +4,6 @@
 var config = require('../config'),
     path = require('path'),
     fs = require('fs'),
-    mime = require('mime'),
     markdownParser = require('../lib//markdown-parser'),
     pages = {};
 
