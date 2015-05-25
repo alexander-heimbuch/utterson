@@ -1,6 +1,6 @@
 {
   "name": "utterson-generator",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Utterson module for parsing markdown files and generating static html",
   "main": "index.js",
   "scripts": {

@@ -19,7 +19,7 @@ module.exports = (function () {
                         'base': '..',
                         'category': categoryName,
                         'name': path.basename(filePath, path.extname(filePath)),
-                        'url': '.' + filePath.replace(source, '').split(path.extname(filePath))[0]
+                        'url': filePath.replace(source, '').split(path.extname(filePath))[0]
                     }, result);
                 });
 
