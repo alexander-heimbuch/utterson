@@ -1,0 +1,14 @@
+ {  
+    "contentDir": "content",
+    "buildDir": "build",
+    "templatesDir": "templates",
+    "template": "default",
+    "content": {
+        "./": {
+            "type": "pages"
+        },
+        "static/": {
+            "type": "statics"
+        }
+    }
+}
