@@ -1,10 +1,12 @@
 {
-  "name": "utterson-generator",
-  "version": "0.1.1",
-  "description": "Utterson module for parsing markdown files and generating static html",
+  "name": "utterson",
+  "version": "1.0.0",
+  "description": "A simple static page and blog generator written in NodeJS",
   "main": "index.js",
   "scripts": {
-    "build": "node index.js"
+    "test": "node_modules/.bin/mocha -w",
+    "dev": "node_modules/.bin/mocha -w dev.js",
+    "coverage": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec"
   },
   "repository": {
     "type": "git",
@@ -24,16 +26,24 @@
   },
   "homepage": "https://github.com/zusatzstoff/utterson-generator",
   "dependencies": {
-    "bluebird": "^2.9.12",
+    "bluebird": "^2.9.34",
     "file": "^0.2.2",
     "fs-extra": "^0.14.0",
-    "lodash": "^2.4.1",
+    "fs-extra-promise": "^0.2.1",
+    "glob-promise": "^1.0.3",
+    "lodash": "^2.4.2",
     "markdown-extra": "^0.1.0",
     "marked": "^0.3.2",
-    "mime": "^1.2.11",
-    "moment": "^2.10.2",
-    "node-uuid": "^1.4.3",
-    "rimraf": "^2.2.8",
-    "striptags": "^1.0.0"
+    "rewire": "^2.3.4",
+    "striptags": "^1.0.0",
+    "winston": "^1.0.1"
+  },
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "eslint": "^1.1.0",
+    "istanbul": "^0.3.21",
+    "mocha": "^2.2.5",
+    "sinon": "^1.15.4",
+    "sinon-chai": "^2.8.0"
   }
 }
