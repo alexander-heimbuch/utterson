@@ -17,13 +17,13 @@ module.exports = function (pipe) {
 
         switch (content.type) {
         case 'posts':
-            pipe.content[index] = posts(contentPath, content);
+            pipe.content[index] = posts(contentPath, content, index);
             break;
         case 'pages':
-            pipe.content[index] = pages(contentPath, content);
+            pipe.content[index] = pages(contentPath, content, index);
             break;
         case 'statics':
-            pipe.content[index] = statics(contentPath, content);
+            pipe.content[index] = statics(contentPath, content, index);
             break;
         default:
             winston.info('Unknown or undefined content type for', index);

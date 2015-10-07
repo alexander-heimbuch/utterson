@@ -75,29 +75,42 @@ module.exports = {
             return results;
         }
 
-        _.forEach(content, function (element, key) {
+        _.forEach(content, function (element) {
             if (element === undefined || element.type === undefined || element.type !== type) {
                 return;
             }
 
             _.forEach(element.files, function (file) {
-                var fragment = element[file],
-                    fileDetails = path.parse(file);
-
+                var fragment = element[file];
                 // filter collection of posts, these are commonly category fragments
                 if (fragment === undefined || fragment.posts !== undefined) {
                     return;
                 }
-
-                _.extend(fragment, {
-                    name: path.join(fileDetails.dir, fileDetails.name),
-                    parent: key
-                });
 
                 results.push(fragment);
             });
         });
 
         return results;
+    },
+
+    /**
+     * Resolves relative parent and own name of a specific file
+     * @param  {String} file       Path to corresponding file
+     * @param  {String} parent     Parent relative to the corresponding file
+     * @param  {String} type       Type of the corresponding file [post, page, static]
+     * @return {Object}            Object containing single content files from a given type
+     */
+    relatives: function (file, parent, type) {
+        var fileDetails = path.parse(file),
+            filePath = (type === 'static') ?
+                path.join(fileDetails.dir, fileDetails.name + fileDetails.ext) :
+                path.join(fileDetails.dir, fileDetails.name);
+
+        return {
+            name: filePath,
+            parentDir: parent,
+            href: parent + filePath
+        };
     }
 };

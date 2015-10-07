@@ -19,7 +19,7 @@ describe('posts aggregator', function () {
     it('should resolve posts from the pipe', function (done) {
         var testCategory = _.cloneDeep(testData.content['test-category-one/']);
 
-        postAggregrator(path.resolve(testData.contentDir, 'test-category-one'), testCategory)
+        postAggregrator(path.resolve(testData.contentDir, 'test-category-one'), testCategory, 'test-category-one')
             .then(function (category) {
                 expect(category).to.have.any.keys(
                     'test-markdown-post-1.md',
@@ -29,11 +29,11 @@ describe('posts aggregator', function () {
                     'type'
                 );
 
-                expect(category['test-markdown-post-1.md']).to.have.any.keys('content', 'title', 'teaser');
+                expect(category['test-markdown-post-1.md']).to.have.any.keys('content', 'title', 'teaser', 'name', 'parentDir', 'href');
                 expect(category['test-markdown-post-1.md'].content).not.to.be.empty;
-                expect(category['test-markdown-post-2.md']).to.have.any.keys('content', 'title', 'teaser');
+                expect(category['test-markdown-post-2.md']).to.have.any.keys('content', 'title', 'teaser', 'name', 'parentDir', 'href');
                 expect(category['test-markdown-post-2.md'].content).not.to.be.empty;
-                expect(category['test-markdown-post-2.md']).to.have.any.keys('content', 'title', 'teaser');
+                expect(category['test-markdown-post-2.md']).to.have.any.keys('content', 'title', 'teaser', 'name', 'parentDir', 'href');
                 expect(category['test-markdown-post-2.md'].content).not.to.be.empty;
                 done();
             });

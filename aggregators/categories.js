@@ -82,6 +82,7 @@ var orderPosts = function (posts, order) {
             startpage['index.md'].posts = orderPosts(posts, startpage.order);
             startpage.files.push('index.md');
         });
+
         return Bluebird.resolve(content);
     };
 

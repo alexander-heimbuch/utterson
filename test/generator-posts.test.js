@@ -48,21 +48,23 @@ describe('posts generator', function () {
         });
     });
 
-    it('should call the template with the correct content', function (done) {
+    it('should call the theme with the correct content', function (done) {
         var callCounter = 0,
-            testTemplate = function (content, cb) {
+            testTheme = function (content, cb) {
                 callCounter += 1;
                 cb(content.name + '.html', 'custom-html');
             };
 
-        postsGenerator(testData, testTemplate).then(function () {
-            expect(callCounter).to.equal(2);
-            expect(filePrefix).to.have.been.calledTwice;
+        postsGenerator(testData, testTheme).then(function () {
+            expect(callCounter).to.equal(3);
+            expect(filePrefix).to.have.been.calledThrice;
             expect(filePrefix.firstCall).to.have.been.calledWith(path.resolve(testData.buildDir, 'test-category-one/'));
             expect(filePrefix.secondCall).to.have.been.calledWith(path.resolve(testData.buildDir, 'test-category-two/'));
-            expect(fileAdd).to.have.been.calledTwice;
+            expect(filePrefix.thirdCall).to.have.been.calledWith(path.resolve(testData.buildDir, 'test-category-three/'));
+            expect(fileAdd).to.have.been.calledThrice;
             expect(fileAdd.firstCall).to.have.been.calledWith('test-post-1.html', 'custom-html');
             expect(fileAdd.secondCall).to.have.been.calledWith('test-post-2.html', 'custom-html');
+            expect(fileAdd.thirdCall).to.have.been.calledWith('test-post-3.html', 'custom-html');
             done();
         });
     });

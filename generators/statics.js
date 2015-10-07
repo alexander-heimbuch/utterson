@@ -13,7 +13,7 @@ var _ = require('lodash'),
 
 module.exports = function (pipe) {
     var files = _.map(plumber.filter(pipe.content, 'statics'), function (file) {
-        return {'dest': path.join(file.parent, file.name), 'content': file};
+        return {'dest': path.join(file.parentDir, file.name), 'content': file};
     });
 
     return fileWriter.prefix(pipe.buildDir).add(files).run().return(pipe);

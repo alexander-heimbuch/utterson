@@ -42,18 +42,18 @@ describe('pipe architect', function () {
         });
     });
 
-    it('should resolve the templatesDir correctly', function (done) {
+    it('should resolve the themesDir correctly', function (done) {
         architect.initializeConfig().then(function (data) {
-            expect(data.templatesDir).to.equal(path.resolve('templates'));
+            expect(data.themesDir).to.equal(path.resolve('themes'));
             done();
         });
     });
 
-    it('should resolve a custom templatesDir correctly', function (done) {
+    it('should resolve a custom themesDir correctly', function (done) {
         architect.initializeConfig({
-            templatesDir: 'my-custom-templates-dir'
+            themesDir: 'my-custom-themes-dir'
         }).then(function (data) {
-            expect(data.templatesDir).to.equal(path.resolve('my-custom-templates-dir'));
+            expect(data.themesDir).to.equal(path.resolve('my-custom-themes-dir'));
             done();
         });
     });

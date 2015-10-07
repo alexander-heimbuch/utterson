@@ -19,12 +19,13 @@ module.exports = {
         config = options || {};
 
         return Bluebird.resolve({
-            contentDir:    plumber.path(defaults, 'contentDir', config),
-            buildDir:      plumber.path(defaults, 'buildDir', config),
-            templatesDir:  plumber.path(defaults, 'templatesDir', config),
-            template:      (config === undefined) ? defaults.template : config.template || defaults.template,
+            contentDir: plumber.path(defaults, 'contentDir', config),
+            buildDir:   plumber.path(defaults, 'buildDir', config),
+            themesDir:  plumber.path(defaults, 'themesDir', config),
+            theme:      (config === undefined) ? defaults.theme : config.theme || defaults.theme,
             // content will be extended by the specific pipeline function
-            content:     {}
+            baseUrl:   (config === undefined) ? defaults.baseUrl : config.baseUrl || defaults.baseUrl,
+            content:    {}
         });
     },
 

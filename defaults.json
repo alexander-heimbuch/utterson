@@ -1,8 +1,8 @@
  {  
     "contentDir": "content",
     "buildDir": "build",
-    "templatesDir": "templates",
-    "template": "default",
+    "themesDir": "themes",
+    "theme": "default",
     "content": {
         "./": {
             "type": "pages"

@@ -18,15 +18,17 @@ module.exports = function (pipe, template) {
         taskStack = [];
 
     var generate = function (page) {
-        if (page === undefined) {
-            winston.error('PageGenerator:', 'Missing information for page');
+        if (page === undefined || page.parentDir === undefined || page.name === undefined) {
+            winston.error('Post Generator:', 'Missing information for post', page);
             return Bluebird.resolve(pipe);
         }
 
         return new Bluebird(function (resolve) {
+            winston.info('Page Generator:', 'writing', page.name);
+
             template(page, function (file, content) {
                 fileWriter
-                    .prefix(path.resolve(pipe.buildDir, page.parent))
+                    .prefix(path.resolve(pipe.buildDir, page.parentDir))
                     .add(file, content)
                     .run()
                     .then(function () {
@@ -35,10 +37,6 @@ module.exports = function (pipe, template) {
             });
         });
     };
-
-    if (pages === undefined) {
-        return Bluebird.resolve(pipe);
-    }
 
     _.forEach(pages, function (page) {
         taskStack.push(generate(page));

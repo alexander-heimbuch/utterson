@@ -29,11 +29,11 @@ describe('pages aggregator', function () {
                     'type'
                 );
 
-                expect(pages['test-markdown-page-1.md']).to.have.any.keys('content', 'title', 'teaser');
+                expect(pages['test-markdown-page-1.md']).to.have.any.keys('content', 'title', 'teaser', 'name', 'parentDir', 'href');
                 expect(pages['test-markdown-page-1.md'].content).not.to.be.empty;
-                expect(pages['test-markdown-page-2.md']).to.have.any.keys('content', 'title', 'teaser');
+                expect(pages['test-markdown-page-2.md']).to.have.any.keys('content', 'title', 'teaser', 'name', 'parentDir', 'href');
                 expect(pages['test-markdown-page-2.md'].content).not.to.be.empty;
-                expect(pages['test-markdown-page-2.md']).to.have.any.keys('content', 'title', 'teaser');
+                expect(pages['test-markdown-page-2.md']).to.have.any.keys('content', 'title', 'teaser', 'name', 'parentDir', 'href');
                 expect(pages['test-markdown-page-2.md'].content).not.to.be.empty;
                 done();
             });

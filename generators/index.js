@@ -11,7 +11,7 @@ var path = require('path'),
     custom = require('./custom');
 
 module.exports = function (pipe) {
-    var template = require(path.resolve(pipe.templatesDir, pipe.template)),
+    var template = require(path.resolve(pipe.themesDir, pipe.theme)),
         tasks = [];
 
     // build categories

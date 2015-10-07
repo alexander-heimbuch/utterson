@@ -6,8 +6,7 @@
  * Calls the given template with startpage data
  */
 
-var path = require('path'),
-    Bluebird = require('bluebird'),
+var Bluebird = require('bluebird'),
     fileWriter = require('../tools/file-writer');
 
 module.exports = function (pipe, template) {

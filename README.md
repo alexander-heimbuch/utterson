@@ -1,48 +1,49 @@
-# Utterson-Generator
-Git markdown parsing and static html generator module for the static blog generation framework [Utterson](https://github.com/zusatzstoff/utterson).
+# Utterson
+Simple static blog (and page) generator written in NodeJS.
 
 ## Installation
 
 ```
-npm install utterson-generator
+npm install utterson
 ```
 
 ## Usage
 
-```
-var generator = require('utterson-generator');
-```
-
-## Requirements
-
-* Parses markdown files from different directories on one level
-* Needs an intelligent template like [Utterson-Casper](https://github.com/zusatzstoff/utterson-casper) to generate the static html
-
-## Core Methods
+*TL;DR Have a look at the utterson-example repository for a basic example*
 
 ```
-// Set the template
-generator.use(templateReference);
-
-// Add a source directory for markdown files
-generator.add(pathToMarkdownDirectory);
-
-// Ignoring a specific directory in sources
-generator.ignore(['folderName1', 'folderName2']);
-
-// Setup the distribution folder that will be the destination of the static html files
-generator.dist(pathToDistributionFolder);
-
-// Trigger the transformation from the markdown files
-generator.build();
+var utterson = require('utterson');
+utterson();
 ```
 
-## Additional Methods
+Utterson follows the mindset convention over configuration. If you are sticking to the following conventions you don't need to pass any parameter to Utterson. In any other case it is possible to configure Utterson to your needs by passing a configuration object to the function:
 
 ```
-// Set a logging function
-generator.logger(loggingFn);
+var config = {
+    "contentDir": "content",
+    "buildDir": "build",
+    "templatesDir": "templates",
+    "template": "default",
+    "content": {
+        "./": {
+            "type": "pages"
+        },
+        "static/": {
+            "type": "statics"
+        }
+    }
+};
+
+utterson(config);
 ```
+
+## Documentation
+
+[1 Content and Configuration](https://github.com/alexander-heimbuch/utterson/wiki/1-Content-and-Configuration)
+
+[2 Templates](https://github.com/alexander-heimbuch/utterson/wiki/2-Templates)
+
+[3 Filewriter](https://github.com/alexander-heimbuch/utterson/wiki/3-Filewriter)
 
 ## License
 MIT-Licensed

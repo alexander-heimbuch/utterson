@@ -1,6 +1,7 @@
 /* eslint-env node, mocha */
 'use strict';
-var Bluebird = require('bluebird'),
+var _ = require('lodash'),
+    Bluebird = require('bluebird'),
     path = require('path'),
     sinon = require('sinon'),
     chai = require('chai'),

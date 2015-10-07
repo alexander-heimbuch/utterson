@@ -78,7 +78,7 @@ markdown.setOptions({
 
 module.exports = function (file, extentMeta) {
     if (file === undefined) {
-        throw new Error('Missing Parameter', 'Expect a given file path');
+        throw new Error('Missing Parameter', 'Markdown parser expects a given file path');
     }
 
     return fs.readFileAsync(file, 'utf8')

@@ -24,7 +24,7 @@ module.exports = {
             .then(function (categories) {
                 categories.forEach(function (category) {
                     // Don't override already defined structures
-                    if (pipe.content[category].type !== undefined) {
+                    if (pipe.content[category] !== undefined && pipe.content[category].type !== undefined) {
                         return;
                     }
 

@@ -18,12 +18,9 @@ module.exports = function (pipe, template) {
         taskStack = [];
 
     var generate = function (name, content) {
-        if (name === undefined || content === undefined) {
-            winston.error('CategoryGenerator:', 'Missing information for category with path', name, 'and content', content);
-            return Bluebird.resolve(pipe);
-        }
-
         return new Bluebird(function (resolve) {
+            winston.info('Category Generator:', 'Writing', name);
+
             template(content, function (file, response) {
                 fileWriter
                     .prefix(path.resolve(pipe.buildDir, name))
@@ -36,12 +33,12 @@ module.exports = function (pipe, template) {
         });
     };
 
-    if (categories === undefined) {
-        return Bluebird.resolve(pipe);
-    }
-
     _.forEach(categories, function (content, name) {
-        taskStack.push(generate(name, content));
+        if (content['index.md'] === undefined) {
+            return;
+        }
+
+        taskStack.push(generate(name, content['index.md']));
     });
 
     return Bluebird.all(taskStack).return(pipe);

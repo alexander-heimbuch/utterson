@@ -10,31 +10,31 @@
 var _ = require('lodash'),
     path = require('path'),
     Bluebird = require('bluebird'),
-    markdown = require('../tools/markdown');
+    markdown = require('../tools/markdown'),
+    plumber = require('../pipe/plumber');
 
-var parsePosts = function (base, posts) {
-        return Bluebird.props(_.reduce(posts.files, function (result, post) {
-            result[post] = markdown(path.resolve(base, post));
-            return result;
-        }, {}));
-    },
+module.exports = function (base, posts, category) {
+    var parsePosts = function () {
+            return Bluebird.props(_.reduce(posts.files, function (result, post) {
+                result[post] = markdown(path.resolve(base, post));
 
-    resolveDates = function (posts) {
-        return Bluebird.resolve(_.reduce(posts, function (result, post, index) {
-            if (post.publish === undefined) {
-                post.publish = new Date('01-01-1970').getTime();
-            } else {
-                post.publish = new Date(post.publish).getTime();
-            }
+                return result;
+            }, {}));
+        },
 
-            result[index] = post;
-            return result;
-        }, {}));
-    };
+        augmentData = function (posts) {
+            var resolvedPosts = _.reduce(posts, function (result, post, key) {
+                post.publish = (post.publish === undefined) ? new Date('01-01-1970') : new Date(post.publish);
 
-module.exports = function (base, posts) {
-    return parsePosts(base, posts)
-        .then(resolveDates)
+                result[key] = _.merge(post, plumber.relatives(key, category, 'posts'));
+                return result;
+            }, {});
+
+            return Bluebird.resolve(resolvedPosts);
+        };
+
+    return parsePosts()
+        .then(augmentData)
         .then(function (resolvedPosts) {
             return Bluebird.resolve(_.extend(posts, resolvedPosts));
         });

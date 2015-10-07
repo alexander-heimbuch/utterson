@@ -1,6 +1,6 @@
 {
   "name": "utterson",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple static page and blog generator written in NodeJS",
   "main": "index.js",
   "scripts": {
@@ -34,7 +34,7 @@
     "lodash": "^2.4.2",
     "markdown-extra": "^0.1.0",
     "marked": "^0.3.2",
-    "rewire": "^2.3.4",
+    "pony-config": "^1.0.5",
     "striptags": "^1.0.0",
     "winston": "^1.0.1"
   },
@@ -44,6 +44,7 @@
     "istanbul": "^0.3.21",
     "mocha": "^2.2.5",
     "sinon": "^1.15.4",
-    "sinon-chai": "^2.8.0"
+    "sinon-chai": "^2.8.0",
+    "rewire": "^2.3.4"
   }
 }
