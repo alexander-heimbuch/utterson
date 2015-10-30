@@ -9,7 +9,7 @@ npm install utterson
 
 ## Usage
 
-*TL;DR Have a look at the utterson-example repository for a basic example*
+*TL;DR Have a look at the [utterson-example](https://github.com/alexander-heimbuch/utterson-example) repository for a basic example*
 
 ```
 var utterson = require('utterson');
