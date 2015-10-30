@@ -1,6 +1,6 @@
 {
   "name": "utterson",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple static page and blog generator written in NodeJS",
   "main": "index.js",
   "scripts": {

@@ -5,7 +5,7 @@
  * UTTERSON - markdown parser
  */
 
-var Bluebird = require('Bluebird'),
+var Bluebird = require('bluebird'),
     _ = require('lodash'),
     fs = Bluebird.promisifyAll(require('fs-extra')),
     eol = require('os').EOL,
