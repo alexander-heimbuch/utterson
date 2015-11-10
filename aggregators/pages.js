@@ -23,9 +23,9 @@ module.exports = function (base, pages, folder) {
             return Bluebird.props(pagesContent);
         },
 
-        augmentData = function (pages) {
-            return Bluebird.resolve(_.reduce(pages, function (results, page, key) {
-                results[key] = _.extend(page, plumber.relatives(key, folder, 'page'));
+        augmentData = function (pagesContent) {
+            return Bluebird.resolve(_.reduce(pagesContent, function (results, page, key) {
+                results[key] = _.extend(page, plumber.relatives(key, folder, 'page'), plumber.attributes(pages));
                 return results;
             }, {}));
         };

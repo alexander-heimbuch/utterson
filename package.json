@@ -1,6 +1,6 @@
 {
   "name": "utterson",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple static page and blog generator written in NodeJS",
   "main": "index.js",
   "scripts": {
@@ -27,6 +27,7 @@
   "homepage": "https://github.com/zusatzstoff/utterson-generator",
   "dependencies": {
     "bluebird": "^2.9.34",
+    "excerpt-html": "^1.0.1",
     "file": "^0.2.2",
     "fs-extra": "^0.14.0",
     "fs-extra-promise": "^0.2.1",
@@ -35,7 +36,6 @@
     "markdown-extra": "^0.1.0",
     "marked": "^0.3.2",
     "pony-config": "^1.0.5",
-    "striptags": "^1.0.0",
     "winston": "^1.0.1"
   },
   "devDependencies": {

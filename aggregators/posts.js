@@ -22,11 +22,11 @@ module.exports = function (base, posts, category) {
             }, {}));
         },
 
-        augmentData = function (posts) {
-            var resolvedPosts = _.reduce(posts, function (result, post, key) {
+        augmentData = function (postsContent) {
+            var resolvedPosts = _.reduce(postsContent, function (result, post, key) {
                 post.publish = (post.publish === undefined) ? new Date('01-01-1970') : new Date(post.publish);
 
-                result[key] = _.merge(post, plumber.relatives(key, category, 'posts'));
+                result[key] = _.merge(post, plumber.relatives(key, category, 'posts'), plumber.attributes(posts));
                 return result;
             }, {});
 

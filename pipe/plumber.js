@@ -112,5 +112,22 @@ module.exports = {
             parentDir: parent,
             href: parent + filePath
         };
+    },
+
+    attributes: function (heritage, parent) {
+        var ignoreAttributes = ['files', 'posts', 'indexed', 'order', 'type'];
+
+        if (parent !== undefined) {
+            heritage = heritage[parent];
+        }
+
+        return  _.reduce(heritage, function (result, attr, key) {
+            if (ignoreAttributes.indexOf(key) > -1 || heritage.files.indexOf(key) > -1) {
+                return result;
+            }
+
+            result[key] = attr;
+            return result;
+        }, {});
     }
 };

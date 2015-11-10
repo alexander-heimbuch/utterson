@@ -21,19 +21,6 @@ var orderPosts = function (posts, order) {
         return  _.sortBy(posts, 'publish').reverse();
     },
 
-    getAttributes = function (parent) {
-        var ignoreAttributes = ['files', 'posts', 'indexed', 'order', 'type'];
-
-        return  _.reduce(parent, function (result, attr, key) {
-            if (ignoreAttributes.indexOf(key) > -1 || parent.files.indexOf(key) > -1) {
-                return result;
-            }
-
-            result[key] = attr;
-            return result;
-        }, {});
-    },
-
     categoriesIndex = function (content) {
         _.forEach(plumber.sieve(content, 'posts'), function (category) {
             if ((category.indexed !== undefined && category.indexed === false) || category['index.md'] !== undefined) {
@@ -44,7 +31,7 @@ var orderPosts = function (posts, order) {
                 posts: orderPosts(_.map(category.files, function (file) {
                     return category[file];
                 }), category.order)
-            }, getAttributes(category));
+            }, plumber.attributes(content, category));
 
             category.files.push('index.md');
         });
@@ -64,7 +51,7 @@ var orderPosts = function (posts, order) {
             return Bluebird.resolve(content);
         }
 
-        startpage['index.md'] = _.extend(getAttributes(startpage), {posts: posts});
+        startpage['index.md'] = _.extend(plumber.attributes(startpage), {posts: posts});
 
         _.forEach(plumber.sieve(content, 'posts'), function (category) {
 

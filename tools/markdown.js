@@ -11,17 +11,23 @@ var Bluebird = require('bluebird'),
     eol = require('os').EOL,
     mde = require('markdown-extra'),
     markdown = require('marked'),
-    striptags = require('striptags');
+    excerpt = require('excerpt-html');
 
 var parseContent = function (fileContent) {
         // TODO: RegEx for linebreaks
         var content = mde.content(fileContent) || '';
 
         content = markdown(content).replace(/\r?\n|\r/g, '');
+
         return {
             content: markdown(content).replace(/<h1.*>.*<\/h1>/ig, ''),
             title: mde.heading(fileContent) || undefined,
-            teaser: striptags(content.replace(/<h\d.*>.*<\/h\d>/ig, ''))
+            teaser: excerpt(content, {
+                moreRegExp:  /\s*<!--\s*more\s*-->/i,  // Search for the slug
+                stripTags:   true, // Set to false to get html code
+                pruneLength: 300, // Amount of characters that the excerpt should contain
+                pruneString: '...', // Character that will be added to the pruned string
+            })
         };
     },
 
