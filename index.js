@@ -22,7 +22,6 @@ module.exports = function (options) {
         .then(tinsmith.getPages)
         .then(tinsmith.getStatics)
         .then(aggregator)
-        .then(tinsmith.extendContext)
         .then(generator);
 };
 
