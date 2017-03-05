@@ -17,8 +17,6 @@ var parseContent = function (fileContent) {
         // TODO: RegEx for linebreaks
         var content = mde.content(fileContent) || '';
 
-        content = markdown(content).replace(/\r?\n|\r/g, '');
-
         return {
             content: markdown(content).replace(/<h1.*>.*<\/h1>/ig, ''),
             title: mde.heading(fileContent) || undefined,
