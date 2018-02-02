@@ -1,4 +1,6 @@
 # Utterson
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/alexander-heimbuch/utterson.svg)](https://greenkeeper.io/)
 Simple static blog (and page) generator written in NodeJS.
 
 ## Installation
