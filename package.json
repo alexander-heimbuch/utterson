@@ -26,25 +26,25 @@
   },
   "homepage": "https://github.com/zusatzstoff/utterson-generator",
   "dependencies": {
-    "bluebird": "^2.9.34",
+    "bluebird": "^3.5.1",
     "excerpt-html": "^1.0.1",
     "file": "^0.2.2",
-    "fs-extra": "^0.14.0",
-    "fs-extra-promise": "^0.2.1",
-    "glob-promise": "^1.0.3",
-    "lodash": "^2.4.2",
+    "fs-extra": "^5.0.0",
+    "fs-extra-promise": "^1.0.1",
+    "glob-promise": "^3.3.0",
+    "lodash": "^4.17.4",
     "markdown-extra": "^0.1.0",
     "marked": "^0.3.2",
-    "pony-config": "^1.0.5",
-    "winston": "^1.0.1"
+    "pony-config": "^3.0.1",
+    "winston": "^2.4.0"
   },
   "devDependencies": {
-    "chai": "^3.2.0",
-    "eslint": "^1.1.0",
-    "istanbul": "^0.3.21",
-    "mocha": "^2.2.5",
-    "sinon": "^1.15.4",
+    "chai": "^4.1.2",
+    "eslint": "^4.16.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.0.0",
+    "sinon": "^4.2.2",
     "sinon-chai": "^2.8.0",
-    "rewire": "^2.3.4"
+    "rewire": "^3.0.2"
   }
 }
